@@ -1,7 +1,7 @@
 {
   "name": "Link Here",
   "description": "A chrome extension which constructs a text node link and copies it.",
-  "version": "0.1",
+  "version": "0.2",
   "permissions": [
   	"contextMenus", "activeTab"
   ],

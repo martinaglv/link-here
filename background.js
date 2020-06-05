@@ -20,7 +20,8 @@ chrome.contextMenus.onClicked.addListener(function(info, tab){
   chrome.tabs.executeScript(tab.id, {
     code: `
       var copyFrom = document.createElement("input");
-      copyFrom.value = window.location.href.replace(/#.*/, '') + '#:~:text=' + encodeURIComponent(getSelection());
+      var escapedSelection = encodeURIComponent(String(getSelection()).trim());
+      copyFrom.value = window.location.href.replace(/#.*/, '') + '#:~:text=' + escapedSelection;
       document.body.appendChild(copyFrom);
       copyFrom.select();
       document.execCommand('copy');

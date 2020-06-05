@@ -19,13 +19,9 @@ chrome.contextMenus.onClicked.addListener(function(info, tab){
 
   chrome.tabs.executeScript(tab.id, {
     code: `
-      var copyFrom = document.createElement("input");
-      var escapedSelection = encodeURIComponent(String(getSelection()).trim());
-      copyFrom.value = window.location.href.replace(/#.*/, '') + '#:~:text=' + escapedSelection;
-      document.body.appendChild(copyFrom);
-      copyFrom.select();
-      document.execCommand('copy');
-      document.body.removeChild(copyFrom);
+      var toCopy = window.location.href.replace(/#.*/, '') + '#:~:text=' +
+        encodeURIComponent(String(getSelection()).trim());
+      navigator.clipboard.writeText(toCopy);
     `
   });
 
